@@ -1,0 +1,4 @@
+{
+  "paypalmethod": "https://www.paypal.me/FifaIL/150",
+  "phonemethod": "0526540414"
+}

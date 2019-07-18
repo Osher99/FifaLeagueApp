@@ -1,0 +1,13 @@
+Fixtures - https://api.npoint.io/1a93e6d294ae5a54111a (temp) - rebrand.ly/rvlk53 (static)
+
+Tables - https://api.npoint.io/b9b6ce93c8b32df95ed1 (temp) - rebrand.ly/40412 (static)
+
+News - https://api.npoint.io/9f9c80219815cef9657f (temp) - rebrand.ly/00cb5 (static)
+
+Rewards - https://api.npoint.io/3e1c0825af12319de75c (temp) - rebrand.ly/hdemne (static)
+
+Rules - https://api.npoint.io/a3f9a697f0ac48744499 (temp) - rebrand.ly/htstam (static)
+
+Payment - https://api.npoint.io/d197141f8bfab34f3e39 (temp) - rebrand.ly/iwh5au (static)
+
+NewRules - https://api.npoint.io/416e9e87d0d49d993c0a (temp) - rebrand.ly/htstam (static)
