@@ -37,7 +37,7 @@ class App extends Component {
       
 }
 
-    render() {      
+    render() {
         YellowBox.ignoreWarnings(['ListView is deprecated']);
         YellowBox.ignoreWarnings(['Setting a timer']);
         

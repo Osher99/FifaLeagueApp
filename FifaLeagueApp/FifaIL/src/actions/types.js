@@ -37,3 +37,4 @@ export const FETCH_TABLES = 'fetch_tables';
 export const NEWS_FETCH = 'news_fetch';
 export const REGISTER_USER_FAIL = 'register_user_fail';
 export const FETCH_LINKS = 'fetch_links';
+export const VIDEOS_FETCH = 'videos_fetch';

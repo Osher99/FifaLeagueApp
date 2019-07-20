@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, StatusBar } from 'react-native';
+import { View, ScrollView, StatusBar, Text } from 'react-native';
 import { Toast } from 'native-base';
 import { Header, Card } from 'react-native-elements';
 import { CardSection, Button } from '../common';
@@ -14,7 +14,8 @@ class Rewards extends Component {
       
     _mounted = false;
     state ={
-        spinner: true
+        spinnerRewards: true,
+        noRewardsLoaded: true
     };
 
     componentWillUnmount () {
@@ -28,12 +29,17 @@ class Rewards extends Component {
             this.props.fetchRewardsAction();
         this.timer = setTimeout(() =>{
             this.setState({
-                spinner: false
+                spinnerRewards: false
             });
-        }, 1000);
+            
+            if (this.props.rewards) {
+                this.setState({
+                    noRewardsLoaded: false
+                });
+            }
+        }, 2000);
     }
     }
-
 
     renderRewards() {
         const { rewards } = this.props;
@@ -59,6 +65,51 @@ class Rewards extends Component {
     }
 
     render() {
+        if (this.state.spinnerRewards) {
+            return (
+                <View>
+                     <StatusBar
+            backgroundColor="green"
+            style="light-content"
+            />
+                    <Header
+  statusBarProps={{ barStyle: 'light-content' }}
+  barStyle="light-content" // or directly
+  centerComponent={{ text: 'פרסים', style: styles.headerStyle }}
+  containerStyle={{
+    backgroundColor: 'green',
+    justifyContent: 'space-around',
+  }}
+/>
+<Spinner
+                        visible={this.state.spinnerRewards}
+                        textContent={'טוען...'}
+                            />
+                            </View>
+            )
+        }
+
+        if (this.state.noRewardsLoaded) {
+            return (
+                <View style={styles.containerStyle}>
+                <StatusBar
+                            backgroundColor="green"
+                            style="light-content"
+                            />
+                <Header
+                  statusBarProps={{ barStyle: 'light-content' }}
+                  barStyle="light-content" // or directly
+                  centerComponent={{ text: 'פרסים', style: styles.headerStyle }}
+                  containerStyle={{
+                    backgroundColor: 'green',
+                    justifyContent: 'space-around',
+                  }}
+                />
+<Text style={styles.headerInfo}>בעיית תקשורת! אנא היכנס מחדש לאפליקציה</Text>
+                            </View>
+            ) 
+        }
+
         return (
 <View style={styles.containerStyle}>
 <StatusBar

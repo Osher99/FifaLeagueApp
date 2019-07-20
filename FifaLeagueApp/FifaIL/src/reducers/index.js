@@ -13,6 +13,7 @@ import FixtureReducer from './FixtureReducer';
 import TableReducer from './TableReducer.js';
 import NewsReducer from './NewsReducer.js';
 import LinksReducer from './LinksReducer.js';
+import VideosReducer from './VideosReducer.js';
 
 export default combineReducers({
     auth: AuthReducer,
@@ -28,5 +29,6 @@ export default combineReducers({
     fetchFixtures: FixtureReducer,
     fetchTables: TableReducer,
     fetchNews: NewsReducer,
-    fetchLinks: LinksReducer
+    fetchLinks: LinksReducer,
+    fetchVideos: VideosReducer
 });

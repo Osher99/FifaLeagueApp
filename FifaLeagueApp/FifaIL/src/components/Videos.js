@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
-import { View, Image, Linking, ScrollView, StatusBar } from 'react-native';
-import { fetchNewsAction } from '../actions';
+import { View, Linking, ScrollView, StatusBar } from 'react-native';
+import { fetchVideosAction } from '../actions';
 import {connect} from 'react-redux';
-import _ from 'lodash';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { Header, Card } from 'react-native-elements';
 import CompleteFlatList from 'react-native-complete-flatlist';
-import { Container, Content, ListItem, Text, Thumbnail, Footer, Icon } from "native-base";
+import { Container, Content, ListItem, Text } from "native-base";
 import { CardSection, Button } from '../common';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import FooterHandMade from '../common/FooterHandMade';
+import { WebView } from 'react-native-webview';
+import VideoItem from './VideoItem';
 
-class Lobby extends Component {
+
+
+class Videos extends Component {
     
     _mounted = false;
     state ={
-        spinner: true
+        spinnerVideos: true,
+        noVideosLoaded: true
     };
 
     componentWillUnmount () {
@@ -26,54 +30,32 @@ class Lobby extends Component {
     componentDidMount() {
         this._mounted = true;
         if(this._mounted) {
-        this.props.fetchNewsAction();
+        this.props.fetchVideosAction();
         this.timer = setTimeout(() =>{
             this.setState({
-                spinner: false
+                spinnerVideos: false
             });
+            if (this.props.videos) {
+                this.setState({
+                    noVideosLoaded: false
+                });
+            }
+
         }, 2000);
     }
     }
 
-    renderItem = (item)  => {
-        return (
-            <View key={item.id} style={{justifyContent: 'center', alignItems:'center'}}>
-                <ListItem itemHeader>
-                <Card>
-            <CardSection>
-            <Text style={styles.headerTextStyle}>{item.title}</Text>
-                <View style={styles.thumbnailContainerStyle}>
-                    <Thumbnail
-                    source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdFrHDsnaABZcirZnf3HWeL_JLnkr18n49EYUS1eDOXQ24m8yH" }} 
-                    />
-                </View>
-                <View style={styles.headerContentStyle}>
-            </View>
-            </CardSection>
-            <CardSection>
-            <Text style={styles.headerTextStyle}>{item.date}</Text>
-            </CardSection>
-            <CardSection>
-                <Image style={styles.imageStyle} source={{ uri: item.image }} />
-            </CardSection>
-            <ScrollView style={{flexGrow: 1}}>
-                <CardSection>
-                <Text style={styles.textStyle}>{item.description}</Text>
-                </CardSection>
-             </ScrollView>
-            <CardSection>
-                <Button onPress={() => Linking.openURL(item.whatsappLink)}><Text style={styles.buttonTextStyle}>
-                <FontAwesomeIcon name="whatsapp" color="white" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>  WhatsAppהצטרפות לקבוצת ה </Text></Button>
-            </CardSection>
-        </Card>
-         </ListItem>
-      </View>
-        );
-      }
-
+      renderVideos() {
+        const { videos } = this.props.videos;
+        console.log(videos)
+        return videos.map(
+            video => 
+            <VideoItem key={video.id} video={video} />           
+          );
+    }
 
     render() {
-        if (this.state.spinner) {
+        if (this.state.spinnerVideos) {
             return (
                 <View>
                      <StatusBar
@@ -83,19 +65,41 @@ class Lobby extends Component {
                     <Header
   statusBarProps={{ barStyle: 'light-content' }}
   barStyle="light-content" // or directly
-  centerComponent={{ text: 'חדשות', style: styles.headerStyle }}
+  centerComponent={{ text: 'סרטונים', style: styles.headerStyle }}
   containerStyle={{
     backgroundColor: 'green',
     justifyContent: 'space-around',
   }}
 />
 <Spinner
-                        visible={this.state.spinner}
+                        visible={this.state.spinnerVideos}
                         textContent={'טוען...'}
                             />
                             </View>
             )
         }
+
+        if (this.state.noVideosLoaded) {
+            return (
+                <View style={styles.container}>
+                <StatusBar
+                            backgroundColor="green"
+                            style="light-content"
+                            />
+                <Header
+                  statusBarProps={{ barStyle: 'light-content' }}
+                  barStyle="light-content" // or directly
+                  centerComponent={{ text: 'סרטונים', style: styles.headerStyle }}
+                  containerStyle={{
+                    backgroundColor: 'green',
+                    justifyContent: 'space-around',
+                  }}
+                />
+<Text style={styles.headerStyle}>בעיית תקשורת! אנא היכנס מחדש לאפליקציה</Text>
+                            </View>
+            ) 
+        }
+
         return (
 <View style={{ flex: 1 }}>
 <StatusBar
@@ -105,19 +109,24 @@ class Lobby extends Component {
 <Header
   statusBarProps={{ barStyle: 'light-content' }}
   barStyle="light-content" // or directly
-  centerComponent={{ text: 'חדשות', style: styles.headerStyle }}
+  centerComponent={{ text: 'סרטונים', style: styles.headerStyle }}
   containerStyle={{
     backgroundColor: 'green',
     justifyContent: 'space-around',
   }}
-/><Container style={{flex: 1 }}>
-                <Content>
+/>
+
+<Container style={{flex: 1 }}>
+          <Content>
+              {this.renderVideos()}
+{/* 
             <CompleteFlatList
-        data={this.props.news.news}
-        extraData={this.props.news.news}
+        data={this.props.videos.videos}
+        extraData={this.props.videos.videos}
         renderItem={this.renderItem}
         keyExtractor={item => item.id.toString()}
                 />
+                 */}
                 <FooterHandMade />
                 </Content>
             </Container>
@@ -125,6 +134,8 @@ class Lobby extends Component {
             );
     }
 }
+
+
 
 const styles = {
     container: {
@@ -153,20 +164,21 @@ const styles = {
         fontSize: 16,
          fontFamily: 'Thomba',
        color: 'black',
+      textAlign: 'center',  
       fontWeight: 'bold',
-      textAlign: 'center',
       lineHeight: 20,
       justifyContent: 'center',
       alignItems: 'center'
      },
-     textStyle: {
+     dateStyle: {
         fontSize: 18,
          fontFamily: 'Thomba',
        color: 'black',
-      textAlign: 'right',  
+      textAlign: 'center',  
       fontWeight: 'bold',
-      textAlign: 'right',
       lineHeight: 20,
+      justifyContent: 'center',
+      alignItems: 'center'
      },
      buttonTextStyle: {
         fontSize: 16,
@@ -175,7 +187,7 @@ const styles = {
       textAlign: 'right',  
       fontWeight: 'bold',
       justifyContent: 'center',
-      alignItems: 'center',
+      alignItems: 'center'
      },
         headerContentStyle: {
             flexDirection: 'column',
@@ -192,7 +204,7 @@ const styles = {
             marginRight: 10
         },
         headerTextStyle: {
-            fontSize: 18,
+            fontSize: 20,
             fontFamily: 'Thomba',
             color: 'grey',
            textAlign: 'right',
@@ -205,14 +217,18 @@ const styles = {
             height: 200,
             flex: 1,
             width: 300
+        },
+        cardRounded: {
+            paddingEnd:0,  paddingTop: 0 , paddingBottom: 0, paddingStart: 0, padding:0,
+            borderRadius: 12, alignItems:"center", backgroundColor: '#000000' ,flex:0, height:240,
         }
     };
 
 
-const mapStateToProps = ({ fetchNews }) => {
-    const { news } = fetchNews;
-
-    return { news };
+const mapStateToProps = ({ fetchVideos }) => {
+    const { videos } = fetchVideos;
+    console.log(videos);
+    return { videos };
 }
 
- export default connect(mapStateToProps, {fetchNewsAction})(Lobby);
+ export default connect(mapStateToProps, {fetchVideosAction})(Videos);

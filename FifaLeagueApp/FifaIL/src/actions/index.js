@@ -37,7 +37,8 @@ import {
       FETCH_TABLES,
       NEWS_FETCH,
       REGISTER_USER_FAIL,
-      FETCH_LINKS
+      FETCH_LINKS,
+      VIDEOS_FETCH
     } from './types';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
@@ -280,6 +281,27 @@ export const fetchFixturesAction = () => {
     );
     }
 }
+
+export const fetchVideosAction = () => {
+    return (dispatch) => {
+    axios.get('https://rebrand.ly/8610f')
+    .then(respone => { 
+        dispatch({type: VIDEOS_FETCH, payload: respone.data})
+    }).catch(
+        (error) => {
+            console.log(error);
+            Toast.show({
+                text: 'בעיות חיבור, בבקשה תבדוק את חיבור האינטרנט',
+                type: "danger",
+                duration: 3000,
+                buttonText: 'אחלה'
+            })
+        }
+    );
+    }
+}
+
+
 export const fetchNewsAction = () => {
     return (dispatch) => {
     axios.get('https://rebrand.ly/00cb5')
