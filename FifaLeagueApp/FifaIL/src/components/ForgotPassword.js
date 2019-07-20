@@ -13,6 +13,7 @@ import {
 import { Toast } from 'native-base';
 import { Button, Spinner } from '../common';
 import { Actions } from 'react-native-router-flux';
+import logo from '../assets/Images/logo.png';
 
   class ForgotPassword extends Component{
 
@@ -55,8 +56,7 @@ import { Actions } from 'react-native-router-flux';
             backgroundColor="black"
             style="light-content"
             />
-            <Image source={{uri:
-            'https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-20/images/2019/05/fifa20-logotop-teaserpage-xl.png'}}
+         <Image source={logo}
        style={styles.logoStyle}>           
            </Image>    
           <TextInput style={styles.inputBox} 

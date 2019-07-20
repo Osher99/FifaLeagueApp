@@ -22,6 +22,7 @@ import { Toast } from 'native-base';
 import { Button, Spinner } from '../common';
 import { Actions } from 'react-native-router-flux';
 import DatePicker from 'react-native-datepicker'
+import logo from '../assets/Images/logo.png';
 
   class RegisterForm extends Component{
     componentWillMount() {
@@ -132,7 +133,7 @@ import DatePicker from 'react-native-datepicker'
 		return(
 			<View style={styles.container}>
          <KeyboardAvoidingView style={styles.keyboard}>
-         <Image source={{uri: 'https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-20/images/2019/05/fifa20-logotop-teaserpage-xl.png'}}
+         <Image source={logo}
            style={styles.logoStyle} />  
          <View style={{flexDirection: "row", justifyContent: "space-between"}}>
                <TextInput style={styles.inputBox} 
