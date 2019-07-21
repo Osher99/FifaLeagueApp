@@ -5,6 +5,8 @@ import CompleteFlatList from 'react-native-complete-flatlist';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Container, Content, ListItem, Left, Body, Right, Title, Text } from "native-base";
 import FooterHandMade from '../common/FooterHandMade';
+import { CardSection, Button } from '../common';
+import { Actions } from 'react-native-router-flux';
 
 class FixtureItem extends Component{
     
@@ -58,6 +60,13 @@ renderSeparator = () => {
                 <Text style={semiHeader}>כל המשחקים חייבים להיות משוחקים עד {fixtureEndDate} (כולל)</Text>
             </Card>
       </Card>
+      <Card>
+              <CardSection style={{justifyContent: 'center'}}>
+          <Button style={{paddingLeft: 15}}  onPress={() => {
+                         Actions.tabber({type: 'reset'});
+                          Actions['matchesTab']()}}>חזרה למחזורים</Button>
+          </CardSection>
+              </Card>
       <FooterHandMade />    
     </ScrollView>
     </View>
