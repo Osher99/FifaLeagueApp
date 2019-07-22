@@ -10,7 +10,7 @@ import { Container, Content, ListItem, Text, Thumbnail, Footer, Icon } from "nat
 import { CardSection, Button } from '../common';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import FooterHandMade from '../common/FooterHandMade';
-import dark_logo from '../assets/Images/dark_logo.png';
+import thumbnail from '../assets/Images/thumbnail.png';
 
 class Lobby extends Component {
     
@@ -45,7 +45,7 @@ class Lobby extends Component {
             <Text style={styles.headerTextStyle}>{item.title}</Text>
                 <View style={styles.thumbnailContainerStyle}>
                     <Thumbnail
-                    source={dark_logo}
+                    source={thumbnail}
                     />
                 </View>
                 <View style={styles.headerContentStyle}>
