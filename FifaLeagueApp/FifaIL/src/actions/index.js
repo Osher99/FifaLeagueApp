@@ -226,7 +226,7 @@ export const registerUserFail = (dispatch) => {
 
 export const fetchRulesAction = () => {
     return (dispatch) => {
-    axios.get('https://rebrand.ly/htstam')
+    axios.get('https://api.npoint.io/416e9e87d0d49d993c0a')
     .then(respone => { 
         dispatch({type: RULES_FETCH, payload: respone.data})
     }).catch(
@@ -245,7 +245,7 @@ export const fetchRulesAction = () => {
 
 export const fetchPaymentMethods = () => {
     return (dispatch) => {
-    axios.get('https://rebrand.ly/iwh5au')
+    axios.get('https://api.npoint.io/d197141f8bfab34f3e39')
     .then(respone => { 
         dispatch({type: PAYMENT_FETCH, payload: respone.data})
     }).catch(
@@ -264,7 +264,7 @@ export const fetchPaymentMethods = () => {
 
 export const fetchFixturesAction = () => {
     return (dispatch) => {
-    axios.get('https://rebrand.ly/rvlk53')
+    axios.get('https://api.npoint.io/4d890ebfbed8ae5b6032')
     .then(respone => { 
         console.log(respone.data)
         dispatch({type: FIXTURE_FETCH, payload: respone.data})
@@ -284,7 +284,7 @@ export const fetchFixturesAction = () => {
 
 export const fetchVideosAction = () => {
     return (dispatch) => {
-    axios.get('https://rebrand.ly/8610f')
+    axios.get('https://api.npoint.io/8dd9d23777dd23df2e69')
     .then(respone => { 
         dispatch({type: VIDEOS_FETCH, payload: respone.data})
     }).catch(
@@ -304,7 +304,7 @@ export const fetchVideosAction = () => {
 
 export const fetchNewsAction = () => {
     return (dispatch) => {
-    axios.get('https://rebrand.ly/00cb5')
+    axios.get('https://api.npoint.io/9f9c80219815cef9657f')
     .then(respone => { 
         dispatch({type: NEWS_FETCH, payload: respone.data})
     }).catch(
@@ -323,7 +323,7 @@ export const fetchNewsAction = () => {
 
 export const fetchFooterLinks = () => {
     return (dispatch) => {
-    axios.get('https://rebrand.ly/41hdik')
+    axios.get('https://api.npoint.io/cb7bde2d6cbc6510fb55')
     .then(respone => { 
         dispatch({type: FETCH_LINKS, payload: respone.data})
     }).catch(
@@ -341,7 +341,7 @@ export const fetchFooterLinks = () => {
 }
 export const fetchTablesAction = () => {
     return (dispatch) => {
-    axios.get('https://rebrand.ly/40412')
+    axios.get('https://api.npoint.io/b9b6ce93c8b32df95ed1')
     .then(respone => { 
         dispatch({type: FETCH_TABLES, payload: respone.data})
     }).catch(
