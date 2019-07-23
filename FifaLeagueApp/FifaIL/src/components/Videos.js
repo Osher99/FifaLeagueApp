@@ -35,7 +35,7 @@ class Videos extends Component {
             this.setState({
                 spinnerVideos: false
             });
-            if (this.props.videos) {
+            if (this.props.videos.videos) {
                 this.setState({
                     noVideosLoaded: false
                 });
@@ -184,8 +184,8 @@ const styles = {
         fontSize: 16,
          fontFamily: 'Thomba',
        color: 'white',
-      textAlign: 'right',  
-      fontWeight: 'bold',
+       textAlign: 'center',  
+       fontWeight: 'bold',
       justifyContent: 'center',
       alignItems: 'center'
      },
@@ -207,8 +207,8 @@ const styles = {
             fontSize: 20,
             fontFamily: 'Thomba',
             color: 'grey',
-           textAlign: 'right',
-               fontWeight: 'bold',
+            textAlign: 'center',  
+            fontWeight: 'bold',
            flexDirection: 'row',
              justifyContent: 'flex-end',
                borderRadius: 25,

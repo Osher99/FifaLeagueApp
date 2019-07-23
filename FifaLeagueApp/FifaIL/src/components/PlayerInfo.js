@@ -78,16 +78,14 @@ class PlayerInfo extends Component {
          {
             return (
                 <Card style={{justifyContent: 'center'}}>
-                <Text style={styles.textStyle}>   <Icon name="check" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>          </Text>
-            <Text style={{justifyContent: 'center', fontSize:14}}>             האימייל שלך מאושר</Text>
+                <Text style={styles.textStyle}><Icon name="check" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>  האימייל שלך מאושר   </Text>
             </Card>
             );
         } else {
             return (
                 <Card style={{justifyContent: 'center'}}>
-                <Text style={styles.textStyle}><Icon name="close" color="red" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>          </Text>
-            <Text style={{justifyContent: 'center', fontSize:14}}> האימייל שלך עדיין לא מאושר</Text>
-            <Text style={{justifyContent: 'center', fontSize:14}}> בבקשה אשר אותו בתיבת הדואר או שלח חדש</Text>
+                <Text style={styles.textStyle}><Icon name="close" color="red" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>   האימייל שלך עדיין לא מאושר  </Text>
+                <Text style={styles.textStyle}>   בבקשה אשר אותו בתיבת הדואר או שלח חדש   </Text>
             <CardSection style={{justifyContent: 'center', paddingRight: 25}}>
             {!this.state.buttonHide ? <Button  onPress={this.onEmailVerifyPress.bind(this)}>שלח אימייל אימות נוסף</Button> : <Text style={{justifyContent: 'center', fontWeight: 'bold', color: 'green'}}>אימייל חדש נשלח בהצלחה!</Text>}
            </CardSection></Card>
@@ -161,23 +159,17 @@ class PlayerInfo extends Component {
           />
 <ScrollView style={{flexGrow: 1}}>
                     <Card title={"פרטים אישיים"} containerStyle={{justifyContent: 'center'}} titleStyle={{justifyContent: 'center', fontSize: 22}}>
-                    <Text style={styles.textStyle}>
-                 {email}          <Icon name="envelope-o" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>   </Text>
+                    <Text style={styles.textStyle}><Icon name="envelope-o" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>  {email}  <Icon name="envelope-o" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/></Text>
                  <CardSection></CardSection>
-                    <Text style={styles.textStyle}>
-                 {ign}          <Icon name="gamepad" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>   </Text>
+                    <Text style={styles.textStyle}><Icon name="gamepad" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>     {ign}     <Icon name="gamepad" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/></Text>
                  <CardSection></CardSection>
-                    <Text style={styles.textStyle}>
-                 {birthdate}          <Icon name="birthday-cake" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>   </Text>
+                    <Text style={styles.textStyle}><Icon name="birthday-cake" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>     {birthdate}     <Icon name="birthday-cake" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/></Text>
                  <CardSection></CardSection>
-                    <Text style={styles.textStyle}>
-                 {fullname}          <Icon name="id-card-o" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>   </Text>
+                    <Text style={styles.textStyle}><Icon name="id-card-o" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>     {fullname}     <Icon name="id-card-o" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/></Text>
                  <CardSection></CardSection>
-                    <Text style={styles.textStyle}>
-                      {phone}          <Icon name="phone" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>     </Text>
+                    <Text style={styles.textStyle}><Icon name="phone" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>     {phone}     <Icon name="phone" color="green" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/></Text>
                       <CardSection></CardSection>
                 </Card>
-                {this.renderEmailVerified()}
                     <Card title={"היסטוריית תחרויות"} containerStyle={{justifyContent: 'center'}} titleStyle={{justifyContent: 'center', fontSize: 22}}>
                             <CardSection><Input label={"כמות משחקים: " + totalGames}/></CardSection>
                             <CardSection><Input label={"כמות ניצחונות: " + totalWins}/></CardSection>
@@ -202,6 +194,7 @@ class PlayerInfo extends Component {
                            <Text style={styles.tinyTest}>100 נקודות זכות מזכות לכניסה חינם לטורניר !</Text>
                            </Card>
                       </Card>
+                      {this.renderEmailVerified()}
                       <Card>
           <CardSection style={{justifyContent: 'center'}}>
           <Button style={{paddingLeft: 15}} onPress={() => {
@@ -247,7 +240,7 @@ const styles = {
         fontSize: 18,
         fontFamily: 'Thomba',
         color: 'black',
-        textAlign: 'right',
+        textAlign: 'center',
          fontWeight: 'bold',
          flexDirection: 'row',
          justifyContent: 'flex-end',
@@ -257,7 +250,7 @@ const styles = {
         fontSize: 18,
         fontFamily: 'Thomba',
         color: 'black',
-        textAlign: 'left',
+        textAlign: 'center',
         fontWeight: 'bold',
         borderRadius: 25,
     },
@@ -269,8 +262,8 @@ const styles = {
             fontSize: 15,
             fontFamily: 'Thomba',
             color: 'black',
-            textAlign: 'right',
-             flexDirection: 'row',
+            textAlign: 'center',
+            flexDirection: 'row',
              justifyContent: 'flex-end'
         },
         headerInfo: {
