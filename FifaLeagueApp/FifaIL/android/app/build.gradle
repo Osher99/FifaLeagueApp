@@ -104,8 +104,8 @@ android {
         applicationId "com.fifail"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 14
-        versionName "14.0"
+        versionCode 15
+        versionName "15.0"
         multiDexEnabled true //important
     }
     splits {

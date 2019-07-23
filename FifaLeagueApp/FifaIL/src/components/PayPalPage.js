@@ -106,7 +106,7 @@ class PayPalPage extends Component {
                   שלם באמצעות <Icon name="paypal" color="black" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>   PayPal  </Button>
               </CardSection>
               <CardSection style={{justifyContent: 'center'}}>
-              <Button  style={{paddingRight: 15}}  onPress={this.phonePress.bind(this)}>   שלם באמצעות העברה בנקאית  <Icon name="call" color="black" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/> </Button>
+              <Button  style={{paddingRight: 15}}  onPress={this.phonePress.bind(this)}>   העברה בנקאית  <Icon name="call" color="black" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/> </Button>
               </CardSection>
               </Card>
               <Card>
