@@ -8,7 +8,8 @@ import {
   //dateChanged, 
   ignChanged, 
   phoneChanged,
-  nameChanged
+  nameChanged,
+  confirmEmailChanged
  } from '../actions';
 import {
     View,
@@ -16,10 +17,13 @@ import {
     KeyboardAvoidingView,
     Text,
     Keyboard,
-    Image
+    Image,
+    TouchableOpacity,
+    Linking,
+    ScrollView
   } from 'react-native';
 import { Toast } from 'native-base';
-import { Button, Spinner } from '../common';
+import { Button, Spinner, CardSection } from '../common';
 import { Actions } from 'react-native-router-flux';
 import DatePicker from 'react-native-datepicker'
 import logo from '../assets/Images/logo.png';
@@ -58,13 +62,17 @@ import logo from '../assets/Images/logo.png';
       this.props.phoneChanged(text);
     }
 
+    onConfirmEmailChange(text) {
+      this.props.confirmEmailChanged(text)
+    }
+
     onButtonPress() {
       Keyboard.dismiss();
 
-      const { email, password, confirmPassword, fullname, ign, phone } = this.props;
+      const { email, password, confirmPassword, fullname, ign, phone, confirmEmail } = this.props;
       const { birthdate } = this.state;
 
-      if (email === '' || password === '' || confirmPassword === '' || fullname === '' || ign === '' || phone === '' || birthdate === '') {
+      if (email === '' || password === '' || confirmPassword === '' || fullname === '' || ign === '' || phone === '' || birthdate === '', confirmEmailChanged === '') {
         Toast.show({
           text: 'נא למלא את כל הטופס בבקשה',
           type: 'warning',
@@ -105,6 +113,16 @@ import logo from '../assets/Images/logo.png';
         return;
       }
 
+      if (email != confirmEmail) {
+        Toast.show({
+          text: 'כתובת אימייל לא תואמת! אנא נסה שנית',
+          type: 'danger',
+          duration: 3000,
+          buttonText: 'אחלה'
+      });
+        return;
+      }
+
       this.props.registerUser({ email, password, fullname, ign, phone, birthdate });
     }
 
@@ -124,6 +142,11 @@ import logo from '../assets/Images/logo.png';
           יש לך חשבון? היכנס כאן
         </Text>
       </Button>
+      <TouchableOpacity onPress={() => Linking.openURL('https://sites.google.com/view/leagueil')}>
+      <Text style={styles.buttonText}>
+          Privacy Policy
+      </Text>
+      </TouchableOpacity>
       </View>
         );
       }
@@ -132,10 +155,8 @@ import logo from '../assets/Images/logo.png';
 	render() {
 		return(
 			<View style={styles.container}>
+        <ScrollView style={{flexGrow: 1}}>
          <KeyboardAvoidingView style={styles.keyboard}>
-         <Image source={logo}
-           style={styles.logoStyle} />  
-         <View style={{flexDirection: "row", justifyContent: "space-between"}}>
                <TextInput style={styles.inputBox} 
               underlineColorAndroid='rgba(0,0,0,0)' 
               placeholder="(WhatsApp) טלפון"
@@ -145,7 +166,6 @@ import logo from '../assets/Images/logo.png';
               type="number"
               keyboardType="numeric"
               />
-       <Text>  </Text>
 <TextInput style={styles.inputBox} 
               underlineColorAndroid='rgba(0,0,0,0)' 
               placeholder="שם מלא"
@@ -153,8 +173,15 @@ import logo from '../assets/Images/logo.png';
               selectionColor="grey"
               onChangeText={this.onNameChange.bind(this)}
               value={this.props.fullname}
-              /></View>
-           <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+              />
+              <TextInput style={styles.inputBox} 
+              underlineColorAndroid='rgba(0,0,0,0)' 
+              placeholder="שם משתמש בקונסולה"
+              placeholderTextColor= "grey"
+              selectionColor="grey"
+              onChangeText={this.onIGNChange.bind(this)}
+              value={this.props.ign}
+              />
           <TextInput style={styles.inputBox} 
               underlineColorAndroid='rgba(0,0,0,0)' 
               placeholder="אימייל"
@@ -163,23 +190,16 @@ import logo from '../assets/Images/logo.png';
               keyboardType="email-address"
               onChangeText={this.onEmailChange.bind(this)}
               value={this.props.email}
-              /><Text>  </Text>
+              />
               <TextInput style={styles.inputBox} 
               underlineColorAndroid='rgba(0,0,0,0)' 
-              placeholder="שם משתמש בקונסולה"
+              placeholder="הכנס שוב את האימייל"
               placeholderTextColor= "grey"
               selectionColor="grey"
-              onChangeText={this.onIGNChange.bind(this)}
-              value={this.props.ign}
-              /></View><View style={{flexDirection: "row", justifyContent: "space-between"}}>
-          <TextInput style={styles.inputBox} 
-              underlineColorAndroid='rgba(0,0,0,0)' 
-              placeholder="הכנס שוב את הסיסמא"
-              secureTextEntry={true}
-              placeholderTextColor= "grey"
-              onChangeText={this.onConfirmPassword.bind(this)}
-              value={this.props.confirmPassword}
-              /><Text>  </Text>
+              keyboardType="email-address"
+              onChangeText={this.onConfirmEmailChange.bind(this)}
+              value={this.props.confirmEmail}
+              />
               <TextInput style={styles.inputBox} 
               underlineColorAndroid='rgba(0,0,0,0)' 
               placeholder="סיסמא"
@@ -187,9 +207,15 @@ import logo from '../assets/Images/logo.png';
               placeholderTextColor= "grey"
               onChangeText={this.onPasswodChange.bind(this)}
               value={this.props.password}
-              />       
-              </View>
-              <View style={{justifyContent: 'center',  alignItems: 'center'}}>
+              />    
+          <TextInput style={styles.inputBox} 
+              underlineColorAndroid='rgba(0,0,0,0)' 
+              placeholder="הכנס שוב את הסיסמא"
+              secureTextEntry={true}
+              placeholderTextColor= "grey"
+              onChangeText={this.onConfirmPassword.bind(this)}
+              value={this.props.confirmPassword}
+              />   
           <DatePicker
         style={styles.datePickerStyle}
         date={this.state.birthdate}
@@ -210,11 +236,12 @@ import logo from '../assets/Images/logo.png';
           },
           dateInput: {marginLeft: 36}
         }}
-      /><Text>  </Text>
-              </View>
-              </KeyboardAvoidingView>
+      />
               {this.renderButton()}
+              </KeyboardAvoidingView>
+              </ScrollView>
   		</View>
+      
 			);
 	}
 }
@@ -226,11 +253,11 @@ const styles = {
       alignSelf: 'center'
     },
     inputBox: {
-      width:200,
+      width:300,
       backgroundColor:'#ffffff',
       borderRadius: 25,
       paddingHorizontal:25,
-      fontSize:15,
+      fontSize:16,
       color:'black',
       marginVertical: 6,
       textAlign: 'center',
@@ -242,7 +269,7 @@ const styles = {
       alignSelf: "stretch"
   },
   datePickerStyle: {
-    width:200,
+    width:300,
     backgroundColor:'#ffffff',
     borderRadius: 25,
     paddingHorizontal:6,
@@ -257,13 +284,19 @@ const styles = {
      width: 300,
      alignItems: 'center',
      alignSelf: 'center'
-   }
+   },
+   buttonText: {
+     fontSize:16,
+     fontWeight:'500',
+     textAlign:'center',
+     color: 'white'
+ }
 }
 
 const mapStateToProps = ({ register }) => {
-  const {fullname, email, password, confirmPassword, ign, phone, loading } = register;
+  const {fullname, email, password, confirmPassword, ign, phone, loading, confirmEmail } = register;
 
-  return  {fullname, email, password, confirmPassword, ign, phone, loading };
+  return  {fullname, email, password, confirmPassword, ign, phone, loading, confirmEmail };
 };
 
 export default connect(mapStateToProps,
@@ -274,5 +307,6 @@ export default connect(mapStateToProps,
      registerUser, 
       nameChanged, 
       ignChanged, 
-      phoneChanged 
+      phoneChanged,
+      confirmEmailChanged 
     })(RegisterForm);

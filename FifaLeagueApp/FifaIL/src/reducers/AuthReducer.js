@@ -3,8 +3,7 @@ import {
     PASSWORD_CHANGED,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL,
-    LOGIN_USER,
-    GET_LOGIN_STATES
+    LOGIN_USER
  } from '../actions/types';
 
 

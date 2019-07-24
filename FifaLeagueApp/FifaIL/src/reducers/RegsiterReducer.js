@@ -9,12 +9,14 @@ import {
     LOGIN_USER,
     LOGIN_USER_SUCCESS,
     NAME_CHANGED,
-    REGISTER_USER_FAIL
+    REGISTER_USER_FAIL,
+    CONFIRM_EMAIL_CHANGED
  } from '../actions/types';
 
 const INITIAL_STATE = {
     fullname: '',
      email: '',
+     confirmEmail: '',
      password: '',
      confirmPassword:  '',
      ign: '',
@@ -42,6 +44,9 @@ export default (state = INITIAL_STATE, action) => {
         case IGN_CHANGED:
             return {...state, ign: action.payload };
         
+        case CONFIRM_EMAIL_CHANGED:
+            return {...state, confirmEmail: action.payload };
+        
         // // case DATE_CHANGED:
         // //     return {...state, date: action.payload };
 
@@ -60,7 +65,8 @@ export default (state = INITIAL_STATE, action) => {
                loading: false,
                 email: '',
                 password: '',
-                confirmPassword: ''
+                confirmPassword: '',
+                confirmEmail: ''
             };
 
         case LOGIN_USER_FAIL:
@@ -70,6 +76,7 @@ export default (state = INITIAL_STATE, action) => {
             email: '',
             password: '',
             confirmPassword: '',
+            confirmEmail: '',
             ign: '',
             phone: '',
             birthdate: '', 

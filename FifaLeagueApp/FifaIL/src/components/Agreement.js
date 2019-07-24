@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Header, Card } from 'react-native-elements';
-import { View, ScrollView, StatusBar } from 'react-native';
+import { View, ScrollView, StatusBar, Linking } from 'react-native';
 import _ from 'lodash';
 import { CardSection, Button } from '../common';
 import { Actions } from 'react-native-router-flux';
@@ -48,7 +48,10 @@ class Agreement extends Component {
             <CardSection style={{justifyContent: 'center'}}>
         <Button style={{paddingRight: 15}} onPress={() => {
                          Actions.tabber({type: 'reset'});
-                          Actions['contactus'](({ player: this.props.playerInformartion[0]}))}}>צור קשר</Button></CardSection>    
+                          Actions['contactus'](({ player: this.props.playerInformartion[0]}))}}>צור קשר</Button></CardSection>  
+<CardSection style={{justifyContent: 'center'}}>
+        <Button style={{paddingRight: 15}} onPress={() => {
+                                                Linking.openURL('https://sites.google.com/view/leagueil')}}>Privacy Policy</Button></CardSection>  
                          </Card>
                   </ScrollView>
                   <FooterHandMade/>

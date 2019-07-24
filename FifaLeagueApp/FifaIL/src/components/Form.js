@@ -7,7 +7,9 @@ import {
     KeyboardAvoidingView,
     Text,
     Keyboard,
-    Image
+    Image,
+    Linking,
+    TouchableOpacity
   } from 'react-native';
 import { Toast } from 'native-base';
 import { Button, Spinner  } from '../common';
@@ -87,6 +89,11 @@ import logo from '../assets/Images/logo.png';
                      שכחתי סיסמה
                    </Text>
          </Button>
+         <TouchableOpacity onPress={() => Linking.openURL('https://sites.google.com/view/leagueil')}>
+      <Text style={styles.buttonText}>
+          Privacy Policy
+      </Text>
+      </TouchableOpacity>
          </View>
         );
       }
@@ -155,7 +162,21 @@ const styles = {
       justifyContent: 'center',
      height: 200,
      width: 300
-  }
+  },
+  button: {
+    width:100,
+    backgroundColor:'green',
+     borderRadius: 25,
+      marginVertical: 10,
+      paddingVertical: 13,
+      textAlign: 'center'
+  },
+  buttonText: {
+    fontSize:16,
+    fontWeight:'500',
+    textAlign:'center',
+    color: 'white'
+}
 }
 
 const mapStateToProps = ({auth }) => {

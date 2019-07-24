@@ -38,7 +38,8 @@ import {
       NEWS_FETCH,
       REGISTER_USER_FAIL,
       FETCH_LINKS,
-      VIDEOS_FETCH
+      VIDEOS_FETCH,
+      CONFIRM_EMAIL_CHANGED
     } from './types';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
@@ -113,6 +114,13 @@ export const newPhoneChanged = (text) => {
 export const emailChanged = (text) => {
     return {
         type: EMAIL_CHANGED,
+        payload: text
+    };
+};
+
+export const confirmEmailChanged = (text) => {
+    return {
+        type: CONFIRM_EMAIL_CHANGED,
         payload: text
     };
 };

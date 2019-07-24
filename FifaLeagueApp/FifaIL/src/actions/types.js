@@ -38,3 +38,4 @@ export const NEWS_FETCH = 'news_fetch';
 export const REGISTER_USER_FAIL = 'register_user_fail';
 export const FETCH_LINKS = 'fetch_links';
 export const VIDEOS_FETCH = 'videos_fetch';
+export const CONFIRM_EMAIL_CHANGED = 'confirm_email_changed';
