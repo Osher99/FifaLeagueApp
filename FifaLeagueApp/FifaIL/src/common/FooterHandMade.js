@@ -14,7 +14,7 @@ class FooterHandMade extends Component {
         this.props.fetchFooterLinks();
     }
     render() {
-        const { facebookLink, phoneLink, InstagramLink, whatsappLink, youtubeLink, gmailLink } = this.props.links;
+        const { facebookLink, phoneLink, InstagramLink, whatsappLink, youtubeLink, gmailLink, telegramLink } = this.props.links;
     return (
         <Footer style={{color: 'white'}}>
         <FooterTab style={{backgroundColor:"#FFF"}}>
@@ -35,6 +35,9 @@ class FooterHandMade extends Component {
           </Button>
           <Button onPress={()=>Linking.openURL(gmailLink)} style={{paddingLeft:0, paddingRight:0}}>
           <Icon type="MaterialCommunityIcons"  name="gmail" style={{ color:'#7f8c8d' }}/>
+          </Button>
+          <Button onPress={()=>Linking.openURL(telegramLink)} style={{paddingLeft:0, paddingRight:0}}>
+          <Icon type="MaterialCommunityIcons"  name="telegram" style={{ color:'#7f8c8d' }}/>
           </Button>
         </FooterTab>
         </Footer>

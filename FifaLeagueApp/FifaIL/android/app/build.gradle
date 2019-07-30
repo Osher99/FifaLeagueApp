@@ -101,11 +101,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.fifail"
+        applicationId "com.fifail" // Change to com.leagueil
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 16
-        versionName "16.0"
+        versionCode 19
+        versionName "19.0"
         multiDexEnabled true //important
     }
     splits {

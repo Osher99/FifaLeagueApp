@@ -41,13 +41,13 @@ class Lobby extends Component {
             <View key={item.id} style={{justifyContent: 'center', alignItems:'center'}}>
                 <ListItem itemHeader>
                 <Card>
-            <CardSection>
-            <Text style={styles.headerTextStyle}>{item.title}</Text>
                 <View style={styles.thumbnailContainerStyle}>
                     <Thumbnail
                     source={thumbnail}
                     />
                 </View>
+            <CardSection>
+            <Text style={styles.headerTextStyle}>{item.title}</Text>
                 <View style={styles.headerContentStyle}>
             </View>
             </CardSection>
@@ -62,10 +62,6 @@ class Lobby extends Component {
                 <Text style={styles.textStyle}>{item.description}</Text>
                 </CardSection>
              </ScrollView>
-            <CardSection>
-                <Button onPress={() => Linking.openURL(item.whatsappLink)}><Text style={styles.buttonTextStyle}>
-                <FontAwesomeIcon name="whatsapp" color="white" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>  WhatsAppהצטרפות לקבוצת ה </Text></Button>
-            </CardSection>
         </Card>
          </ListItem>
       </View>
@@ -113,6 +109,12 @@ class Lobby extends Component {
   }}
 /><Container style={{flex: 1 }}>
                 <Content>
+                    <Card>
+                <CardSection>
+                <Button onPress={() => Linking.openURL('https://chat.whatsapp.com/KlHppV78XgWBiXCRbxXsx7')}><Text style={styles.buttonTextStyle}>
+                <FontAwesomeIcon name="whatsapp" color="white" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>  WhatsAppהצטרפות לקבוצת ה </Text></Button>
+            </CardSection>
+            </Card>
             <CompleteFlatList
         data={this.props.news.news}
         extraData={this.props.news.news}
