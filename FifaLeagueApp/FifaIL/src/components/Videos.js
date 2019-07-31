@@ -81,7 +81,7 @@ class Videos extends Component {
 
         if (this.state.noVideosLoaded) {
             return (
-                <View style={styles.container}>
+<View style={{ flex: 1 }}>
                 <StatusBar
                             backgroundColor="green"
                             style="light-content"

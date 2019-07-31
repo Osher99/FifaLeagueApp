@@ -13,7 +13,8 @@ import FooterHandMade from '../common/FooterHandMade';
 
 class PayPalPage extends Component {
     state = {
-        spinnerPay: true
+        spinnerPay: true,
+        noInfoLoaded: true
     };
     _mounted = false;
 
@@ -30,8 +31,14 @@ class PayPalPage extends Component {
         this.timer = setTimeout(() =>{
             this.setState({
                 spinnerPay: false
-            });
-        }, 1000);
+            }); 
+            if (this.props.player && this.props.methods) {
+                this.setState({
+                    noInfoLoaded: false
+                });
+   
+            }
+        }, 2000);
     }
     }
 
@@ -93,7 +100,52 @@ class PayPalPage extends Component {
     }
 
     render() {
-        console.log(this.props.player);
+        
+        if (this.state.spinnerPay) {
+            return (
+                <View>
+                     <StatusBar
+            backgroundColor="green"
+            style="light-content"
+            />
+                    <Header
+  statusBarProps={{ barStyle: 'light-content' }}
+  barStyle="light-content" // or directly
+  centerComponent={{ text: 'קניית כרטיס', style: styles.headerStyle }}
+  containerStyle={{
+    backgroundColor: 'green',
+    justifyContent: 'space-around',
+  }}
+/>
+<Spinner
+                        visible={this.state.spinnerPay}
+                        textContent={'טוען...'}
+                            />
+                            </View>
+            )
+        }
+        if (this.state.noInfoLoaded) {
+            return (
+                <View>
+                            <StatusBar
+            backgroundColor="green"
+            style="light-content"
+            />
+                    <Header
+  statusBarProps={{ barStyle: 'light-content' }}
+  barStyle="light-content" // or directly
+  centerComponent={{ text: 'קניית כרטיס', style: styles.headerStyle }}
+  containerStyle={{
+    backgroundColor: 'green',
+    justifyContent: 'space-around',
+  }}
+/>
+<Text style={styles.headerInfo}>בעיית תקשורת! אנא היכנס מחדש לאפליקציה</Text>
+                            </View>
+            ) 
+        }
+
+
         return (  
       
             <View style={{flex: 1}}>
@@ -109,10 +161,6 @@ class PayPalPage extends Component {
               justifyContent: 'space-around',
             }}
           />
-                                     <Spinner
-            visible={this.state.spinnerPay}
-            textContent={'טוען...'}
-                /> 
           <ScrollView style={{flexGrow: 1}}>
               <Card>
                   <CardSection style={{justifyContent: 'center'}}>
@@ -124,7 +172,7 @@ class PayPalPage extends Component {
               </CardSection>
               <CardSection style={{justifyContent: 'center'}}>
               <Button  style={{paddingRight: 15}}  onPress={this.bitPress.bind(this)}>
-                  שלם באמצעות <FontAwesomeIcon name="send" color="black" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>         Bit  </Button>
+                  שלם באמצעות<FontAwesomeIcon name="send" color="black" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>         Bit  </Button>
               </CardSection>
               </Card>
               <Card>

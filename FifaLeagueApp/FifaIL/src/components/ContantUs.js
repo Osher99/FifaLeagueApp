@@ -8,9 +8,38 @@ import { messageChanged, sendMessage } from '../actions';
 import {connect} from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import FooterHandMade from '../common/FooterHandMade';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 class ContantUs extends Component {
-    
+  state = {
+    spinnerContact: true,
+    noInfoLoaded: true
+};
+componentWillUnmount () {
+  this._mounted = false
+  clearTimeout(this.timer);
+}
+componentDidMount() {
+  if (this.props.player) {
+    this.setState({
+      noInfoLoaded: false
+    });
+}
+  this._mounted = true;
+  if(this._mounted) {
+  this.timer = setTimeout(() =>{
+      this.setState({
+        spinnerContact: false,
+      }); 
+      if (this.props.player) {
+          this.setState({
+            noInfoLoaded: false
+          });
+
+      }
+  }, 2000);
+}
+}
     onMessageChanged(text) {
         this.props.messageChanged(text);
       }
@@ -31,6 +60,51 @@ class ContantUs extends Component {
       }
 
     render() {
+     
+      if (this.state.spinnerContact) {
+        return (
+            <View>
+                 <StatusBar
+        backgroundColor="green"
+        style="light-content"
+        />
+                <Header
+statusBarProps={{ barStyle: 'light-content' }}
+barStyle="light-content" // or directly
+centerComponent={{ text: 'צור קשר', style: styles.headerStyle }}
+containerStyle={{
+backgroundColor: 'green',
+justifyContent: 'space-around',
+}}
+/>
+<Spinner
+                    visible={this.state.spinnerContact}
+                    textContent={'טוען...'}
+                        />
+                        </View>
+        )
+    }
+
+      if (this.state.noInfoLoaded) {
+        return (
+            <View>
+                        <StatusBar
+        backgroundColor="green"
+        style="light-content"
+        />
+                <Header
+statusBarProps={{ barStyle: 'light-content' }}
+barStyle="light-content" // or directly
+centerComponent={{ text: 'צור קשר', style: styles.headerStyle }}
+containerStyle={{
+backgroundColor: 'green',
+justifyContent: 'space-around',
+}}
+/>
+<Text style={styles.headerInfo}>בעיית תקשורת! אנא היכנס מחדש לאפליקציה</Text>
+                        </View>
+        ) 
+    }
         return (
             <View style={{flex: 1}}>
                       <StatusBar

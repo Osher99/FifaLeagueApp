@@ -17,8 +17,7 @@ class TablePage extends Component{
         const tableHeadInfo = ["קבוצה", "הפרש שערים", "נקודות"]
         let currentTable = this.props.table.tableTeams;
         currentTable.sort((a, b) => a.points > b.points ? -1 : 1);
-        console.log(this.props.table.tableTitle);
-        console.log(currentTable)
+
     return (
         <View style={{flex: 1}}>
         <StatusBar
@@ -27,7 +26,8 @@ class TablePage extends Component{
         />
         <Image source={{uri: 'https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-20/global-assets/common/fifa20-grid-tile-requirements-16x9.png.adapt.crop191x100.628p.png'}}
         style={styles.logoStyle} />
-    <ScrollView style={{ flexGrow: 1}}>
+    <ScrollView style={{ flexGrow: 1}}
+         >
         <Card title={this.props.table.tableTitle} titleStyle={styles.headerInfo}>
                 <Table>      
               <Row data={tableHeadInfo} width={width} height={45} style={styles.head} textStyle={styles.text}/>
@@ -68,7 +68,7 @@ class TablePage extends Component{
               <CardSection style={{justifyContent: 'center'}}>
           <Button style={{paddingLeft: 15}}  onPress={() => {
                          Actions.tabber({type: 'reset'});
-                          Actions['maintableTab']()}}>חזרה לטבלאות</Button>
+                          Actions['maintableTab']()}}>רענן וחזור לטבלאות</Button>
           </CardSection>
               </Card>
               <FooterHandMade />
