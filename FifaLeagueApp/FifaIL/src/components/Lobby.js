@@ -11,6 +11,7 @@ import { CardSection, Button } from '../common';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import FooterHandMade from '../common/FooterHandMade';
 import thumbnail from '../assets/Images/thumbnail.png';
+import { Actions } from 'react-native-router-flux';
 
 class Lobby extends Component {
     
@@ -110,8 +111,14 @@ class Lobby extends Component {
 /><Container style={{flex: 1 }}>
                 <Content>
                     <Card>
+                    <CardSection>
+                <Button onPress={() =>{Actions.tabber({type: 'reset'});
+                          Actions['agreementTab']()}}><Text style={styles.buttonTextStyle}>
+                <FontAwesomeIcon name="pencil" color="white" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>  הרשמה לטורניר הבא </Text></Button>
+            </CardSection>
                 <CardSection>
-                <Button onPress={() => Linking.openURL('https://chat.whatsapp.com/KlHppV78XgWBiXCRbxXsx7')}><Text style={styles.buttonTextStyle}>
+                <Button onPress={() => Linking.openURL('https://chat.whatsapp.com/KlHppV78XgWBiXCRbxXsx7')
+                         }><Text style={styles.buttonTextStyle}>
                 <FontAwesomeIcon name="whatsapp" color="white" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>  WhatsAppהצטרפות לקבוצת ה </Text></Button>
             </CardSection>
             </Card>

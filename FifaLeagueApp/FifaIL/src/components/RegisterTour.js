@@ -162,6 +162,9 @@ renderItem = (item)  => {
             <CardSection>
             <Text style={styles.textStyle}>מספר משתתפים: {item.numberOfPlayers}</Text>
             </CardSection>
+            <CardSection>
+            <Text style={styles.textStyle}>נרשמו: <Text style={styles.redtextStyle}>{item.numberofRegistered}</Text></Text>
+            </CardSection>
             {this.renderButton(item.isAvailable, this.props.player.nextTour, item.console)}
          </ScrollView>
     </Card>
@@ -235,13 +238,22 @@ justifyContent: 'space-around',
                 <Content>
               <Card title={"פרטי שחקן"} containerStyle={{justifyContent: 'center'}} titleStyle={{justifyContent: 'center', fontSize: 22}}>
                   <CardSection>
-                  <Text style={styles.textStyle}>{this.props.player.fullname} </Text><Text style={styles.textStyle}>שם מלא: </Text>
+                  <Text style={styles.textStyleHead}>שם מלא:</Text>
                   </CardSection>
                   <CardSection>
-                  <Text style={styles.textStyle}>{this.props.player.email} </Text><Text style={styles.textStyle}>אימייל: </Text>
+                  <Text style={styles.textStyle}>{this.props.player.fullname}</Text>
                   </CardSection>
                   <CardSection>
-                  <Text style={styles.textStyle}>{this.props.player.phone} </Text><Text style={styles.textStyle}>טלפון: </Text>
+                  <Text style={styles.textStyleHead}>אימייל:</Text>
+                  </CardSection>
+                  <CardSection>
+                  <Text style={styles.textStyle}>{this.props.player.email}</Text>
+                  </CardSection>
+                  <CardSection>
+                  <Text style={styles.textStyleHead}>טלפון:</Text>
+                  </CardSection>
+                  <CardSection>
+                  <Text style={styles.textStyle}>{this.props.player.phone}</Text>
                   </CardSection>
                   <CardSection>
                 <Button onPress={() => Linking.openURL('https://chat.whatsapp.com/KlHppV78XgWBiXCRbxXsx7')}><Text style={styles.textStyleWhite}>
@@ -295,16 +307,36 @@ const styles = {
          alignItems: 'center',
         fontWeight: 'bold',
     },
+    redtextStyle:{
+      fontSize: 16,
+      fontFamily: 'Thomba',
+    color: 'red',
+   fontWeight: 'bold',
+   textAlign: 'center',
+   lineHeight: 20,
+   justifyContent: 'center',
+   alignItems: 'center'
+    },
  textStyle: {
         fontSize: 16,
          fontFamily: 'Thomba',
        color: 'black',
-      fontWeight: 'bold',
       textAlign: 'center',
       lineHeight: 20,
       justifyContent: 'center',
       alignItems: 'center'
      },
+     textStyleHead: {
+      fontSize: 18,
+       fontFamily: 'Thomba',
+     color: 'black',
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+    textAlign: 'center',
+    lineHeight: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+   },
      textStyleBig: {
         fontSize: 20,
          fontFamily: 'Thomba',
