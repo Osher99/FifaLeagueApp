@@ -14,6 +14,7 @@ import TableReducer from './TableReducer.js';
 import NewsReducer from './NewsReducer.js';
 import LinksReducer from './LinksReducer.js';
 import VideosReducer from './VideosReducer.js';
+import ToursReducer from './ToursReducer';
 
 export default combineReducers({
     auth: AuthReducer,
@@ -30,5 +31,6 @@ export default combineReducers({
     fetchTables: TableReducer,
     fetchNews: NewsReducer,
     fetchLinks: LinksReducer,
-    fetchVideos: VideosReducer
+    fetchVideos: VideosReducer,
+    fetchTours: ToursReducer
 });

@@ -18,6 +18,7 @@ import PayPalPage from './PayPalPage';
 import FixtureItem from './FixtureItem';
 import TablePage from './TablePage.';
 import Videos from './Videos';
+import RegisterTour from './RegisterTour';
 import { Root } from "native-base";
 
 const TabIcon = ({focused, iconName}) => {
@@ -64,7 +65,8 @@ const RouterComponent = () => {
                     <Scene key="rules" tabs component={Rules} hideNavBar={true}/> 
                     <Scene key="rewards" tabs component={Rewards} hideNavBar={true}/> 
                     <Scene key="contactus" tabs component={ContantUs} hideNavBar={true}/> 
-                    <Scene key="paypalpage" tabs component={PayPalPage} hideNavBar={true}/> 
+                    {/* <Scene key="paypalpage" tabs component={PayPalPage} hideNavBar={true}/>  */}
+                    <Scene key="registertour" tabs component={RegisterTour} hideNavBar={true}/> 
                     </Scene>
                    
                     <Scene key="tab6" title="סרטונים" icon={TabIcon} iconName="videocam">

@@ -92,9 +92,9 @@ class EditPlayer extends Component {
 
         
 
-        const {uid, tournamentInfo, allTimeInfo, email, isPaid, rightPoints} = this.props.player;
+        const {uid, tournamentInfo, allTimeInfo, email, isPaid, rightPoints, nextTour} = this.props.player;
 
-        this.props.updateProfileUser({fullname, ign, phone, birthdate, uid, tournamentInfo, allTimeInfo, email, isPaid, rightPoints});
+        this.props.updateProfileUser({fullname, ign, phone, birthdate, uid, tournamentInfo, allTimeInfo, email, isPaid, rightPoints, nextTour});
       }
 
 

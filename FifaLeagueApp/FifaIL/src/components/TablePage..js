@@ -16,7 +16,26 @@ class TablePage extends Component{
         const height = 52;
         const tableHeadInfo = ["קבוצה", "הפרש שערים", "נקודות"]
         let currentTable = this.props.table.tableTeams;
-        currentTable.sort((a, b) => a.points > b.points ? -1 : 1);
+        currentTable.sort((a, b) => {
+        //a.points > b.points ? -1 : 1
+    if (a.points > b.points) {
+    return -1
+    }
+    else if (b.points < a.points) {
+    return 1
+    }
+    else {
+        let aGoals= a.goalStand.split('-').map(Number);
+        let bGoals= b.goalStand.split('-').map(Number);
+
+        if (aGoals[0] - aGoals[1] > bGoals[0] - bGoals[1]) {
+        return -1
+        }
+        else {
+        return 1
+        }
+    }
+    });
 
     return (
         <View style={{flex: 1}}>

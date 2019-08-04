@@ -56,9 +56,6 @@ renderSeparator = () => {
         keyExtractor={item => fixturesList.indexOf(item)}
         ItemSeparatorComponent={this.renderSeparator}  
                 /></Content>
-            <Card>
-                <Text style={semiHeader}>כל המשחקים חייבים להיות משוחקים עד {fixtureEndDate} (כולל)</Text>
-            </Card>
       </Card>
       <Card>
               <CardSection style={{justifyContent: 'center'}}>

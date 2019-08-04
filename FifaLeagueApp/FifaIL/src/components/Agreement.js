@@ -33,17 +33,17 @@ class Agreement extends Component {
             <CardSection style={{justifyContent: 'center'}}>
             <Button style={{paddingLeft: 15}} onPress={() => {
                          Actions.tabber({type: 'reset'});
+                          Actions['registertour']({ player: this.props.playerInformartion[0]})}}>הרשמה לטורניר הבא!</Button>
+            </CardSection>
+            <CardSection style={{justifyContent: 'center'}}>
+            <Button style={{paddingLeft: 15}} onPress={() => {
+                         Actions.tabber({type: 'reset'});
                           Actions['rules']()}}>חוקים</Button>
             </CardSection>
             <CardSection style={{justifyContent: 'center'}}>
             <Button style={{paddingLeft: 15}} onPress={() => {
                          Actions.tabber({type: 'reset'});
                           Actions['rewards']()}}>פרסים</Button>
-            </CardSection>
-            <CardSection style={{justifyContent: 'center'}}>
-            <Button style={{paddingLeft: 15}} onPress={() => {
-                         Actions.tabber({type: 'reset'});
-                          Actions['paypalpage']({ player: this.props.playerInformartion[0]})}}>קניית כרטיס</Button>
             </CardSection>
             <CardSection style={{justifyContent: 'center'}}>
         <Button style={{paddingRight: 15}} onPress={() => {

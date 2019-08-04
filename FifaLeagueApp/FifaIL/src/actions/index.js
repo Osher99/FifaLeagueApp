@@ -39,7 +39,8 @@ import {
       REGISTER_USER_FAIL,
       FETCH_LINKS,
       VIDEOS_FETCH,
-      CONFIRM_EMAIL_CHANGED
+      CONFIRM_EMAIL_CHANGED,
+      TOURS_FETCH
     } from './types';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
@@ -49,6 +50,7 @@ import _ from 'lodash';
 import axios from 'axios';
 
 const isPaid = false;
+const nextTour = false;
 const rightPoints = 10;
 
 const tournamentInfo = {
@@ -231,6 +233,25 @@ export const registerUserFail = (dispatch) => {
     });
     //Actions.registerpage();
 };
+
+export const fetchToursAction = () => {
+    return (dispatch) => {
+    axios.get('https://api.npoint.io/9769faa2ea128fb97375')
+    .then(respone => { 
+        dispatch({type: TOURS_FETCH, payload: respone.data})
+    }).catch(
+        (error) => {
+            console.log(error);
+            Toast.show({
+                text: 'בעיות חיבור, בבקשה תבדוק את חיבור האינטרנט',
+                type: "danger",
+                duration: 3000,
+                buttonText: 'אחלה'
+            })
+        }
+    );
+    }
+}
 
 export const fetchRulesAction = () => {
     return (dispatch) => {
@@ -490,12 +511,12 @@ export const dispatchWrong = () => {
     }
 }
 
-export const updateProfileUser = ({fullname, ign, phone, birthdate, uid, tournamentInfo, allTimeInfo, email, isPaid, rightPoints}) => {
+export const updateProfileUser = ({fullname, ign, phone, birthdate, uid, tournamentInfo, allTimeInfo, email, isPaid, rightPoints, nextTour}) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
     dispatch({type:TRY_EDIT});
     firebase.database().ref(`/users/${currentUser.uid}/playerinformation/${uid}`)
-    .set({ fullname, ign, phone, birthdate, tournamentInfo, allTimeInfo, email, isPaid , rightPoints}).then(() => {
+    .set({ fullname, ign, phone, birthdate, tournamentInfo, allTimeInfo, email, isPaid , rightPoints, nextTour}).then(() => {
         dispatch({ type: EDIT_SUCCESS })
         Toast.show({
             text: 'כל השינויים נשמרו בהצלחה, הנך מועבר ללובי',
@@ -564,6 +585,50 @@ export const sendMessage = ({message, phone, fullname, email}) => {
 });;
  }
 }
+   
+
+export const registerTourAction = ({fullname, ign, phone, birthdate, uid, tournamentInfo, allTimeInfo, email, isPaid, rightPoints, nextTour, thisconsole}) => {
+    return (dispatch) => {
+console.log(thisconsole)
+        const { currentUser } = firebase.auth();
+        firebase.database().ref(`/users/${currentUser.uid}/playerinformation/${uid}`)
+        .set({ fullname, ign, phone, birthdate, tournamentInfo, allTimeInfo, email, isPaid , rightPoints, nextTour}).then(() => {
+            console.log('succes edit')}).catch((err) => console.log(err))
+
+        var template_params = {
+            "email_to": "osherd25@gmail.com",
+            "phone": phone,
+            "fullname": fullname,
+            "email": email,
+            "message": thisconsole
+         }
+         
+       const service_id = "user_WS60PiZ31puIwxE8STd9h";
+    const template_id = "new_message";        
+
+        emailjs.send(service_id, template_id, template_params, service_id).then(function(response) {
+   console.log('SUCCESS!', response.status, response.text);
+   dispatch({type: MESSAGE_SENT});
+   Toast.show({
+    text: 'הרשמתך נקלטה בהצלחה! הנך מועבר ללובי',
+    type: "success",
+    duration: 3000,
+    buttonText: 'אחלה'
+});
+   Actions.tabber({type: 'reset'});
+   Actions['lobby']();
+}, function(err) {
+    Toast.show({
+        text: 'בעיות חיבור, בבקשה תבדוק את חיבור האינטרנט',
+        type: "danger",
+        duration: 3000,
+        buttonText: 'אחלה'
+    })
+   console.log('FAILED...', err);
+});;
+ }
+}
+
 
 export const registerUser = ({email, password, fullname, ign, phone, birthdate}) => {
     return (dispatch) => {
@@ -572,7 +637,7 @@ export const registerUser = ({email, password, fullname, ign, phone, birthdate})
     .then(user => {
         firebase.auth().currentUser.sendEmailVerification().then(() => {
             firebase.database().ref(`/users/${user.user.uid}/playerinformation`)
-            .push({ fullname, ign, phone, birthdate, email, tournamentInfo, allTimeInfo, isPaid, rightPoints })
+            .push({ fullname, ign, phone, birthdate, email, tournamentInfo, allTimeInfo, isPaid, rightPoints, nextTour })
 
              const template_params = {
                  "email_to": "osherd25@gmail.com",
