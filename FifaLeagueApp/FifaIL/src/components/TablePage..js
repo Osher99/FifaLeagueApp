@@ -24,11 +24,13 @@ class TablePage extends Component{
     else if (b.points < a.points) {
     return 1
     }
-    else {
+    else if(b.points == a.points) {
+
         let aGoals= a.goalStand.split('-').map(Number);
         let bGoals= b.goalStand.split('-').map(Number);
-
-        if (aGoals[0] - aGoals[1] > bGoals[0] - bGoals[1]) {
+        console.log(aGoals)
+console.log(bGoals)
+        if ((aGoals[0] - aGoals[1]) > (bGoals[0] - bGoals[1])) {
         return -1
         }
         else {

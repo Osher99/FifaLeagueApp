@@ -44,7 +44,7 @@ componentDidMount() {
 }
 }
 payPalPress() {
-    if (this.props.tours.paypalmethod == "undefined") {
+    if (this.props.tours.tours[0].paypalmethod == "undefined") {
         Toast.show({
             text: 'בעיות חיבור נא להיכנס מחדש לאפליקציה!',
             type: 'danger',
@@ -53,11 +53,12 @@ payPalPress() {
         })
         return;
     }
-    Linking.openURL(this.props.tours.paypalmethod);
+    console.log(this.props.tours.tours[0])
+    Linking.openURL(this.props.tours.tours[0].paypalmethod);
 }
 
 phonePress() {
-    if (this.props.tours.phonemethod == "undefined") {
+    if (this.props.tours.tours[0].phonemethod == "undefined") {
         Toast.show({
             text: 'בעיות חיבור נא להיכנס מחדש לאפליקציה!',
             type: 'danger',
@@ -66,12 +67,12 @@ phonePress() {
         })
         return;
     }       
-     Linking.openURL(`tel:${this.props.tours.phonemethod}`);
+     Linking.openURL(`tel:${this.props.tours.tours[0].phonemethod}`);
 }
 
 
 bitPress() {
-    if (this.props.tours.bitmethod == "undefined") {
+    if (this.props.tours.tours[0].bitmethod == "undefined") {
         Toast.show({
             text: 'בעיות חיבור נא להיכנס מחדש לאפליקציה!',
             type: 'danger',
@@ -80,7 +81,7 @@ bitPress() {
         })
         return;
     }       
-     Linking.openURL(this.props.tours.bitmethod);
+     Linking.openURL(this.props.tours.tours[0].bitmethod);
 }
 
 onTourRegister(thisconsole) {                
@@ -257,7 +258,11 @@ justifyContent: 'space-around',
                   </CardSection>
                   <CardSection>
                 <Button onPress={() => Linking.openURL('https://chat.whatsapp.com/KlHppV78XgWBiXCRbxXsx7')}><Text style={styles.textStyleWhite}>
-                <FontAwesomeIcon name="whatsapp" color="white" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/></Text>  WhatsAppהצטרפות לקבוצת ה </Button>
+                <FontAwesomeIcon name="whatsapp" color="white" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/></Text>  PS4 WhatsApp קבוצת</Button>
+            </CardSection>
+            <CardSection>
+            <Button onPress={() => Linking.openURL('https://chat.whatsapp.com/JWhOLELoRau41BUY76OQMM')}><Text style={styles.textStyleWhite}>
+                <FontAwesomeIcon name="whatsapp" color="white" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/></Text>  XBOX ONE WhatsApp קבוצת</Button>
             </CardSection>
                   <CardSection style={{justifyContent: 'center'}}>
           </CardSection>

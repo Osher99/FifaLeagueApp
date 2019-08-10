@@ -116,10 +116,13 @@ class Lobby extends Component {
                           Actions['agreementTab']()}}><Text style={styles.buttonTextStyle}>
                 <FontAwesomeIcon name="pencil" color="white" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>  הרשמה לטורניר הבא </Text></Button>
             </CardSection>
-                <CardSection>
-                <Button onPress={() => Linking.openURL('https://chat.whatsapp.com/KlHppV78XgWBiXCRbxXsx7')
-                         }><Text style={styles.buttonTextStyle}>
-                <FontAwesomeIcon name="whatsapp" color="white" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/>  WhatsAppהצטרפות לקבוצת ה </Text></Button>
+            <CardSection>
+                <Button onPress={() => Linking.openURL('https://chat.whatsapp.com/KlHppV78XgWBiXCRbxXsx7')}><Text style={styles.textStyleWhite}>
+                <FontAwesomeIcon name="whatsapp" color="white" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/></Text>  PS4 WhatsApp קבוצת</Button>
+            </CardSection>
+            <CardSection>
+            <Button onPress={() => Linking.openURL('https://chat.whatsapp.com/JWhOLELoRau41BUY76OQMM')}><Text style={styles.textStyleWhite}>
+                <FontAwesomeIcon name="whatsapp" color="white" size={30} style={{ height: 40, width: 40, paddingLeft: 50 }}/></Text>  XBOX ONE WhatsApp קבוצת</Button>
             </CardSection>
             </Card>
             <CompleteFlatList
