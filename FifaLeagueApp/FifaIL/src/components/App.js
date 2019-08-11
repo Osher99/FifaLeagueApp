@@ -8,26 +8,16 @@ import Router from './Router';
 import { YellowBox, StatusBar } from 'react-native';
 import _ from 'lodash';
 import SplashScreen from 'react-native-splash-screen';
-import { Actions } from 'react-native-router-flux';;
-
+import { Actions } from 'react-native-router-flux';
+import { config } from '../fbConfig/firebaseSettings';
 class App extends Component {
 
     componentDidMount() {
         SplashScreen.hide();
     }
     componentWillMount() {
-
-    const firebaseConfig = {
-        apiKey: 'AIzaSyCL7fa7iHPmeID18AWLGom-KSXYUOprWLI',
-        authDomain: 'fifaleagueil.firebaseapp.com',
-        databaseURL: 'https://fifaleagueil.firebaseio.com',
-        projectId: 'fifaleagueil',
-        storageBucket: '',
-        messagingSenderId: '148754680805',
-        appId: '1:148754680805:web:4455d7a3743431ad'
-      };
-
-      firebase.initializeApp(firebaseConfig);
+        console.log(config)
+      firebase.initializeApp(config);
       firebase.auth().onAuthStateChanged(user => {
         if (user){
         Actions.tabber({type: 'reset'});
