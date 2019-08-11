@@ -16,7 +16,6 @@ class App extends Component {
         SplashScreen.hide();
     }
     componentWillMount() {
-        console.log(config)
       firebase.initializeApp(config);
       firebase.auth().onAuthStateChanged(user => {
         if (user){
